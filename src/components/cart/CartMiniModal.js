@@ -1,5 +1,6 @@
 import React from 'react';
-import '../modal/cartMiniModal.css';
+import { Link } from 'react-router-dom';
+import '../styles/cartMiniModal.css';
 
 export default class CartMiniModal extends React.Component {
     state = {
@@ -30,6 +31,18 @@ export default class CartMiniModal extends React.Component {
                 item: item
             })
         })
+        .catch((err) => {
+            let emptyItem = {
+                'item_id': '0000',
+                'item_name': 'cart is empty',
+                'item_description': ' ',
+                'item_price': '0.00',
+                'quantity': '0'
+            }
+            this.setState({
+                item: emptyItem
+            })
+        })
     }
     componentDidMount() {
         this.showCart()
@@ -38,20 +51,24 @@ export default class CartMiniModal extends React.Component {
         return (
             <div className="miniModalContainer">
                 <h2>Shopping Cart</h2>
-                <div>
+                <div className="miniModalName">
                     {this.state.item['item_name']}
-                    <button>X</button>
                 </div>
-                <div>
+                <div className="miniModalDesc">
                     {this.state.item['item_description']}
                 </div>
-                <div>
+                <div className="miniModalPrice">
                     {`Cost: $${this.state.item['item_price']}(${this.state.item['quantity']})`}
                 </div>
-                <div>
+                <div className="miniModalTotal">
                     {`Total: $${this.state.item['quantity'] * this.state.item['item_price']}`}
                 </div>
-                <button>CheckOut</button>
+                <div className="miniModalDel">
+                    <span>remove item(s)</span>
+                    <button>X</button>
+                </div>
+                <Link className="checkOutBtn" to='/checkoutCart'>CheckOut</Link>
+                {/* <button onClick={this.toCart}>CheckOut</button> */}
             </div>
         );
     }

@@ -32,6 +32,7 @@ class Cart(db.Model):
     item_description = db.Column(db.String(120))
     item_price = db.Column(db.Integer)
     quantity = db.Column(db.Integer)
+    # image = db.Column(db.LargeBinary)
 ##    user_id = db.Column(db.Integer)
 
 

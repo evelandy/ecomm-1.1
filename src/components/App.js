@@ -16,14 +16,19 @@ export default function App() {
                 <span>
                     <NavContainer />
                 </span>
-                <Banner />
                 <Switch>
                     <Route exact path="/" render={props => 
                     <Fragment>
+                        <Banner msg={'Search all of our brands and services by category'} />
                         <FeaturedBuilds />
                         <FeaturedParts />
                     </Fragment>} />
-                    <Route component={CheckoutCart} path='/checkoutCart' />
+                    <Route path='/checkoutCart' render={props => 
+                    <Fragment>
+                        <Banner msg={'Checkout'} />
+                        <CheckoutCart />
+                    </Fragment>
+                    }/>
                 </Switch>
             </div>
         </Router>

@@ -116,44 +116,6 @@
     margin-bottom: .5rem;
     padding-bottom: .5rem;
 }
-
 .promoContainer {
-    position: relative;
-    display: inline-block;
-}
-.promoContent {
-    display: none;
-    position: absolute;
-    z-index: 1;
-
-}
-.promoContainer:hover .promoContent {
-    display: block;
-}
-
-/* 
-.promoContainer {
-    display: inline-flex;
-    flex-direction: column;
-    margin-left: .5rem;
-}
-.promoContainer > label {
     margin-top: 1rem;
-    font-weight: bold;
 }
-.promoContainer > input {
-    font-size: 16px;
-    width: 15rem;
-    height: 1.75rem;
-}
-.promoContainer > button {
-    width: 10rem;
-    height: 1.75rem;
-    margin-top: .5rem;
-}
-.promoContainer > button:hover {
-    cursor: pointer;
-}
-.promoContainer:last-child {
-    margin-bottom: 1rem;
-} */

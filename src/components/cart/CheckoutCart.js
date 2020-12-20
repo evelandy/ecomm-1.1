@@ -45,8 +45,8 @@ export default class CheckoutCart extends React.Component{
     render() {
         return (
             <div className='cartContainer'>
-                <CartItems />
-                <CartTotal />
+                <CartItems item={this.state.item} />
+                <CartTotal item={this.state.item} />
             </div>
         );
     }

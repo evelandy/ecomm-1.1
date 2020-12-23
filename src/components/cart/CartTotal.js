@@ -80,9 +80,24 @@ export default class CartTotal extends React.Component{
     handleChange = (e) => {
         this.setState({promo: e.target.value})
     }
+    noneCart = () => {
+        return (
+            <div className="cartTotalContainer">
+                <h2>Cart Total</h2>
+                <h3><span>Item Total:</span> <span>$0.00</span></h3>
+                <h3><span>Shipping:</span> <span>$0.00</span></h3>
+                <h3 className="split"><span>Tax:</span> <span>$0.00</span></h3>
+                <h3><span>Total:</span> <span>$0.00</span></h3>                    
+            </div>
+        );
+    }
     render() {
         return (
             <div>
+                {this.props.item['item_price'] == undefined
+                ?
+                this.noneCart()
+                :
                 <div className="cartTotalContainer">
                     <h2>Cart Total</h2>
                     <h3><span>Item Total:</span> <span>${(this.props.item['item_price'] * this.props.item['quantity'])}</span></h3>
@@ -93,7 +108,7 @@ export default class CartTotal extends React.Component{
 
                     <h3><span>Total:</span> <span>${this.calculateTotal()}</span></h3>                    
                 </div>
-                
+                }
             </div>
         );
     }

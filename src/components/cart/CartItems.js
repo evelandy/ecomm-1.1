@@ -4,7 +4,9 @@ import CartItemCard from './CartItemCard';
 
 export default class CartItems extends React.Component{
     state = {
-        item: []
+        data: '',
+        item: [],
+        itemList: []
     }
     getCartInfo = () => {
         fetch('http://127.0.0.1:5000/api/v1/cart')
@@ -13,25 +15,50 @@ export default class CartItems extends React.Component{
             return data;
         })
         .then((data) => {
-            let item = {
-                'id': data.message[0].id,
-                'item_id': data.message[0].item_id,
-                'item_name': data.message[0].item_name,
-                'item_description': data.message[0].item_description,
-                'item_price': data.message[0].item_price,
-                'quantity': data.message[0].quantity
-            }
             this.setState({
-                item: item
+                data: data.message
             })
         })
+        .then(() => {
+
+//  ``````````                                                          STUCK HERE!!!!!!!!!!!!!!
+
+            let output = {}
+            let dataLength = this.state.data.length
+            for(let i = 0; i < dataLength; i ++){
+                let id = this.state.data[i].id
+                output['id'] = id 
+                let item_id = this.state.data[i].item_id
+                output['item_id'] = item_id
+                let item_name = this.state.data[i].item_name
+                output['item_name'] = item_name
+                let item_description = this.state.data[i].item_description
+                output['item_description'] = item_description
+                let item_price = this.state.data[i].item_price
+                output['item_price'] = item_price
+                let quantity = this.state.data[i].quantity
+                output['quantity'] = quantity
+            }
+            this.setState({
+                item: output
+            })
+        })
+    }
+    componentDidMount() {
+        this.getCartInfo()
+    }
+    showCards() {
+        for(let i = 0; i < this.state.item.length; i ++){
+            <CartItemCard item={this.state.item[i]} />
+        }
     }
     render() {
         return (
             <div className="cartItemContainer">
+                {console.log(this.state.item)}
                 <h2>Cart Items</h2>
-                <CartItemCard item={this.props.item} />
-                <CartItemCard item={this.props.item} />
+                {this.showCards()}
+                {/* <CartItemCard item={this.state.item} /> */}
             </div>
         );
     }

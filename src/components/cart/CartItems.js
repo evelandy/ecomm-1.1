@@ -21,7 +21,7 @@ export default class CartItems extends React.Component{
         })
         .then(() => {
 
-//  ``````````                                                          STUCK HERE!!!!!!!!!!!!!!
+//  ``````````                LEFT OFF HERE!!!!!!!!!!!!!!
 
             let output = {}
             let dataLength = this.state.data.length
